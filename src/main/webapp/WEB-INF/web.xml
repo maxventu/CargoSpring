@@ -26,7 +26,7 @@
 
   <servlet-mapping>
     <servlet-name>mvc-manager</servlet-name>
-    <url-pattern>CargoSpring/</url-pattern>
+    <url-pattern>/CargoSpring</url-pattern>
   </servlet-mapping>
 
 </web-app>
