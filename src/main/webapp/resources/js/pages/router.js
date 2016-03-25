@@ -1,12 +1,20 @@
-(function () {
-    var CargoSpring = angular.module('CargoSpring', ['ngRoute']);
+(function() {
+var CargoSpring = angular.module('CargoSpring', ['ngRoute']);
 
+CargoSpring.pages = [
+    'index',
+    'users'
+];
+CargoSpring.pagesDir = 'resources/app/pages';
 
-    CargoSpring.config(
-        function ($routeProvider) {
-            $routeProvider
-                .when('/', {templateUrl: 'resources/app/pages/index/index.html', controller: 'indexController'})
-                .when('/users', {templateUrl: 'resources/app/pages/users/users.html', controller: 'usersController'})
-                .otherwise({redirectTo: '/'});
-        }).run();
+CargoSpring.config([
+    '$routeProvider',
+    function($routeProvider){
+        var dir = CargoSpring.pagesDir;
+     CargoSpring.pages.forEach(function (page, i, pages) {
+     $routeProvider
+     .when('/'+page,{templateUrl:dir+'/'+page+'/'+page+'.html',controller:page+'Controller'});
+     });
+        $routeProvider.otherwise({redirectTo: '/'});
+}]).run();
 })();

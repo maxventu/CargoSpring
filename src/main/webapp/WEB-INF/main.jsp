@@ -9,6 +9,8 @@
 <div >
     <div ng-view></div>
 </div>
+<p><a href = "#/users">View Users</a></p>
+<p><a href = "#/index">Blank page</a></p>
 <%@include file="imports.html" %>
 </body>
 </html>
