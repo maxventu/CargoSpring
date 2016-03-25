@@ -14,8 +14,7 @@
             });
 
             requestGetUsers.success(function (data) {
-                $scope.users = data.content;
-                console.log(data.content);
+                $scope.users = data;
             });
         });
 

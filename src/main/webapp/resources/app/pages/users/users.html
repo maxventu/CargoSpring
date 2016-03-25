@@ -11,7 +11,6 @@
         <th>name</th>
         <th>email</th>
         <th>birthday</th>
-        <th>deleted</th>
     </tr>
     </thead>
 
@@ -22,7 +21,6 @@
         <td>{{user.address.city+', '+user.address.street+' '+user.address.house+'-'+user.address.flat}}</td>
         <td>{{user.name+' '+user.surname+' '+user.patronymic}}</td>
         <td>{{user.email}}</td>
-        <td>{{user.birthday}}</td>
-        <td><input type="checkbox" ng-model="{{user.deleted}}" disabled></td>
+        <td>{{user.birthday | date:'medium'}}</td>
     </tr>
 </table>
