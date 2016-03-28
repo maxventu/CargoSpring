@@ -1,8 +1,7 @@
 (function() {
     angular.module("CargoSpring")
-        .controller('indexController', ['$scope', function ($scope) {
-            $scope.activepage = "index";
-            $scope.pagename = "Home page";
-            $scope.pages = angular.module('CargoSpring').pages;
+        .controller('indexController', ['$scope', function ($rootScope,$scope) {
+            console.log("index js init");
+            $scope.curPath = "index";
         }]);
 })();

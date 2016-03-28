@@ -1,21 +1,19 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!doctype html>
-<html lang="en">
+<html lang="en" ng-app = "CargoSpring">
 <head>
     <%@include file="imports.html" %>
 </head>
-<body ng-app = "CargoSpring">
+<body >
 
-
-<%@include file="header.html" %>
-
+<header>
+    <%@include file="header.html" %>
+</header>
 <div >
-    <div ng-view></div>
+    <div ng-view class="container"></div>
 </div>
-<h1>{{activepage}}</h1>
-<p><a href = "#/users">View Users</a></p>
-<p><a href = "#/index">Blank page</a></p>
-
-<%@include file="footer.html" %>
+<footer>
+    <%@include file="footer.html" %>
+</footer>
 </body>
 </html>

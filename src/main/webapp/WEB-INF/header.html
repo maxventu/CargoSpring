@@ -3,19 +3,18 @@
         <div class="container-fluid">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#cargospring_navbar" aria-expanded="false">
-                    <span ng-repeat="page in CargoSpring.pages" class="icon-bar"></span>
+                    <span ng-repeat="page in appPages" class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand" href="#">CargoSpring</a>
             </div>
             <div class="collapse navbar-collapse" id="cargospring_navbar">
                 <ul class="nav navbar-nav">
-                    <li data-ng-repeat="page in  angular.module('CargoSpring').pages" class="{{page == activepage ? 'active' : ''}}">
-                        <a href="#/+{{page}}">op</a>
+                    <li data-ng-repeat="page in appPages" class="{{(page.path) == getCurrentPage().path? 'active' : ''}}">
+                        <a href="{{'#/'+page.path}}">{{page.name}}</a>
                     </li>
                 </ul>
-                <p class="navbar-text">pa</p>
+                <h4 class="navbar-text">{{getCurrentPage().name}}</h4>
             </div>
         </div>
     </nav>
 </header>
-

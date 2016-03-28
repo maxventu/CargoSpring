@@ -1,26 +1,64 @@
 (function() {
-    angular.module("CargoSpring")
-        .controller('usersController',function($rootScope, $location, $scope, $http, $routeParams) {
-            $scope.pagename = "Users";
-           
-            var path = window.location.pathname;
-            $scope.activepage = "users";
+angular.module("CargoSpring")
+    .controller('usersController',function($rootScope, $location, $scope, $http,PageService, $routeParams) {
+        $scope.showUsers = false;
+        $scope.showEmpty = false;
+        $scope.curPath = "users";
+        $scope.users = {};
+        var path = window.location.pathname;
+
+        var requestGetUsers = $http({
+            method: "get",
+            url:  path+"users",
+            params: {page:0,size:$rootScope.usersCountOnPage},
+            dataType: 'json',
+            contentType: 'application/json',
+            mimeType: 'application/json'
+        });
+
+        requestGetUsers.success(function (data) {
+            console.log(data);
+            $scope.users = data.content;
+            $scope.currentPage = 1;
+            $scope.totalElements = data.totalElements;
+            $scope.totalPages = PageService.totalPageNumber($rootScope.usersCountOnPage, $scope.totalElements);
+            $scope.showUsers = data.content.length != 0;
+            $scope.showEmpty = !$scope.showUsers;
+        });
+
+        $scope.getUsers = function(pageNumber){
             
+            if(pageNumber<=0 || pageNumber>$scope.totalPages) return false;
             var requestGetUsers = $http({
                 method: "get",
                 url:  path+"users",
-                params: {},
+                params: {page:pageNumber-1,size:$rootScope.usersCountOnPage},
                 dataType: 'json',
                 contentType: 'application/json',
                 mimeType: 'application/json'
             });
 
             requestGetUsers.success(function (data) {
-                $scope.users = data;
+                console.log(data);
+                $scope.users = data.content;
+                $scope.currentPage = pageNumber;
+                $scope.totalElements = data.totalElements;
+                $scope.totalPages = PageService.totalPageNumber($rootScope.usersCountOnPage, $scope.totalElements);
+                $scope.showUsers = data.content.length != 0;
+                $scope.showEmpty = !$scope.showUsers;
             });
+        };
 
-            $scope.pages = angular.module('CargoSpring').pages;
-        });
+        $scope.getArrayWithNumbers = function(min, max){
 
-
+            var array = [];
+            for(i = min,j=0;i<=max;i++,j++){
+                array[j] = i;
+            }
+            return array;
+        };
+        $scope.getPageReference = function(number){
+            return '#/'+$scope.curPath+'/'+number;
+        }
+    });
 })();
