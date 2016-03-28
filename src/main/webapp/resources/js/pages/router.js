@@ -6,7 +6,7 @@
         {path:'users',name:'Users'}
     ];
     CargoSpring.pagesDir = 'resources/app/pages';
-
+    CargoSpring.path = window.location.pathname;
     CargoSpring.config([
             '$routeProvider',
             function($routeProvider){
@@ -16,6 +16,7 @@
                     $routeProvider
                         .when('/'+page,{templateUrl:dir+'/'+page+'/'+page+'.html',controller:page+'Controller'});
                 });
+                $routeProvider.when('/',{templateUrl:dir+'/login/login.html',controller:'loginController'});
                 $routeProvider.otherwise({redirectTo: '/'});
             }])
         .run(

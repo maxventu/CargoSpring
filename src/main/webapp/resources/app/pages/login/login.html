@@ -1,0 +1,38 @@
+<div class="authorization-form">
+    <div class="div-error-message">
+        <h4>{{errorMessage}}</h4>
+    </div>
+    <form action="login" method="POST" class="form-horizontal" role="form">
+        <div class="form-group">
+            <label for="username" class="col-sm-5 control-label">Username</label>
+
+            <div class="col-sm-2">
+                <input type="text" class="form-control" id="username" placeholder="User name" name="username"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputPassword" class="col-sm-5 control-label">Password</label>
+
+            <div class="col-sm-2">
+                <input type="password" class="form-control" id="inputPassword" placeholder="Password"
+                       name="password"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-5 col-sm-2">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" name='_spring_security_remember_me'> Remember me
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-5 col-sm-2">
+                <button type="submit" class="btn btn-default">Login</button>
+            </div>
+        </div>
+    </form>
+
+
+</div>

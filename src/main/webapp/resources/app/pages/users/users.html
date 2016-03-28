@@ -32,21 +32,19 @@
     <ul class="pagination">
         <li  class="{{currentPage==1 ? 'disabled' : ''}}">
             <a href="javascript:void(0)"
-               ng-click="getUsers(currentPage-1)"
-              >
+               ng-click="getUsers(currentPage-1)">
                 <span aria-hidden="true">&laquo;</span>
             </a>
         </li>
         <li ng-repeat="pageNumb in getArrayWithNumbers(1,totalPages)" class="{{currentPage == pageNumb ? 'active' : ''}}">
             <a href="javascript:void(0)"
-               ng-click="getUsers(pageNumb)"
-               >{{pageNumb}}
+               ng-click="getUsers(pageNumb)">
+                {{pageNumb}}
             </a>
         </li>
         <li class="{{currentPage==totalPages ? 'disabled' : ''}}">
             <a href="javascript:void(0)"
-               ng-click="getUsers(currentPage+1)"
-               >
+               ng-click="getUsers(currentPage+1)">
                 <span aria-hidden="true">&raquo;</span>
             </a>
         </li>

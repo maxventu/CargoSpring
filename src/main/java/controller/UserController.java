@@ -1,19 +1,13 @@
-package controller.user;
+package controller;
 
-import dao.entity.User;
 import dto.UsersPageDTO;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import service.UserService;
-
-import javax.annotation.Resource;
-import java.util.ArrayList;
-import java.util.List;
 
 @Controller
 public class UserController {

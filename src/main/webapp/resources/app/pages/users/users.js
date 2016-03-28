@@ -3,13 +3,11 @@ angular.module("CargoSpring")
     .controller('usersController',function($rootScope, $location, $scope, $http,PageService, $routeParams) {
         $scope.showUsers = false;
         $scope.showEmpty = false;
-        $scope.curPath = "users";
         $scope.users = {};
-        var path = window.location.pathname;
 
         var requestGetUsers = $http({
             method: "get",
-            url:  path+"users",
+            url:  CargoSpring.path+"users",
             params: {page:0,size:$rootScope.usersCountOnPage},
             dataType: 'json',
             contentType: 'application/json',
@@ -31,7 +29,7 @@ angular.module("CargoSpring")
             if(pageNumber<=0 || pageNumber>$scope.totalPages) return false;
             var requestGetUsers = $http({
                 method: "get",
-                url:  path+"users",
+                url:  CargoSpring.path+"users",
                 params: {page:pageNumber-1,size:$rootScope.usersCountOnPage},
                 dataType: 'json',
                 contentType: 'application/json',
@@ -57,8 +55,5 @@ angular.module("CargoSpring")
             }
             return array;
         };
-        $scope.getPageReference = function(number){
-            return '#/'+$scope.curPath+'/'+number;
-        }
     });
 })();
