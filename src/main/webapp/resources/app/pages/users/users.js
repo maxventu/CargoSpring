@@ -1,9 +1,11 @@
 (function() {
     angular.module("CargoSpring")
         .controller('usersController',function($rootScope, $location, $scope, $http, $routeParams) {
-            $scope.message = "Here would be a table";
+            $scope.pagename = "Users";
+           
             var path = window.location.pathname;
-
+            $scope.activepage = "users";
+            
             var requestGetUsers = $http({
                 method: "get",
                 url:  path+"users",
@@ -16,6 +18,8 @@
             requestGetUsers.success(function (data) {
                 $scope.users = data;
             });
+
+            $scope.pages = angular.module('CargoSpring').pages;
         });
 
 

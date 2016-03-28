@@ -1,23 +1,29 @@
 package dao.entity;
 
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.util.Date;
 
 
 @Entity
+
+@Getter
+@Setter
 @Table(name = "company")
 public class Company {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public Integer id;
+    private Integer id;
 
-    public String name;
+    private String name;
 
-    public Date date;
+    private Date date;
 
     @Column(name = "transportation_cost_per_km")
-    public Double transportationCostPerKm;
+    private Double transportationCostPerKm;
 
-    public Boolean locked;
+    private Boolean locked;
 }

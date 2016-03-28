@@ -1,4 +1,4 @@
-(function() {
+
 var CargoSpring = angular.module('CargoSpring', ['ngRoute']);
 
 CargoSpring.pages = [
@@ -17,4 +17,4 @@ CargoSpring.config([
      });
         $routeProvider.otherwise({redirectTo: '/'});
 }]).run();
-})();
+
