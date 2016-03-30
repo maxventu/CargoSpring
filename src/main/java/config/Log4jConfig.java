@@ -10,7 +10,6 @@ public class Log4jConfig {
     @Bean
     public ConsoleAppender consoleAppender() {
         ConsoleAppender appender = new ConsoleAppender();
-        appender.setTarget("System.out");
         appender.setThreshold(Level.ALL);
 
         PatternLayout patternLayout = new PatternLayout();

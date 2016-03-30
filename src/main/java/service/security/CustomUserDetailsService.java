@@ -22,14 +22,12 @@ public class CustomUserDetailsService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         dao.entity.User user = userService.findByUsername(username);
-
-        List<SimpleGrantedAuthority> auths = new ArrayList<>();
+        if(user==null)return null;
+        List<SimpleGrantedAuthority> authorities = new ArrayList<>();
         List<UserRole> userRoles= user.getUserRoleList();
-        String role = "";
-        if(userRoles!=null && userRoles.size()>0){
-            role = userRoles.get(0).getName();
+        for(UserRole role : userRoles ){
+            authorities.add(new SimpleGrantedAuthority(role.getName()));
         }
-        auths.add(new SimpleGrantedAuthority(role));
-        return new User(user.getUsername(), user.getPassword(), auths);
+        return new User(user.getUsername(), user.getPassword(), authorities);
     }
 }

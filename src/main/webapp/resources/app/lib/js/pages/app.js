@@ -17,12 +17,4 @@ CargoSpring.service('PageService', function () {
         return currentPage === totalPageCountt ? "disabled" : "";
     };
 
-    this.isFirstDisabled = function (currentPage) {
-        return currentPage === 1 ? "disabled" : "";
-    };
-
-    this.isLastDisabled = function (currentPage, totalPageCount) {
-        return currentPage === totalPageCount ? "disabled" : "";
-    }
-
 });

@@ -6,6 +6,7 @@ import dao.entity.User;
 import dto.UserDTO;
 import dto.UsersPageDTO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;

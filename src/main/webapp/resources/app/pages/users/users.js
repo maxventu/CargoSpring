@@ -15,7 +15,6 @@ angular.module("CargoSpring")
         });
 
         requestGetUsers.success(function (data) {
-            console.log(data);
             $scope.users = data.content;
             $scope.currentPage = 1;
             $scope.totalElements = data.totalElements;
@@ -37,7 +36,6 @@ angular.module("CargoSpring")
             });
 
             requestGetUsers.success(function (data) {
-                console.log(data);
                 $scope.users = data.content;
                 $scope.currentPage = pageNumber;
                 $scope.totalElements = data.totalElements;

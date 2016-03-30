@@ -10,6 +10,7 @@ CargoSpring.controller("loginController", function ($scope, $location) {
 
 CargoSpring.controller("defaultPageController", function($location, $http ){
     var hasSuccess = ($location.search()).success;
+    console.log(hasSuccess);
     if (hasSuccess) {
         var requestGetUserRole = $http({
             method: "get",
@@ -20,11 +21,15 @@ CargoSpring.controller("defaultPageController", function($location, $http ){
         });
 
         requestGetUserRole.success(function (data) {
-            if (data == "USER") {
+            if (data == "DRIVER") {
                 $location.path('/index');
                 $location.replace();
             }
             if (data == "ADMIN") {
+                $location.path('/users');
+                $location.replace();
+            }
+            if (data == "SYS_ADMIN") {
                 $location.path('/users');
                 $location.replace();
             }

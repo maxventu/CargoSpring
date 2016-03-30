@@ -30,7 +30,7 @@
 </div>
 <nav>
     <ul class="pagination">
-        <li  class="{{currentPage==1 ? 'disabled' : ''}}">
+        <li  class="{{isPrevDisabled(currentPage)}}">
             <a href="javascript:void(0)"
                ng-click="getUsers(currentPage-1)">
                 <span aria-hidden="true">&laquo;</span>
