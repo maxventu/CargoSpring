@@ -28,9 +28,9 @@
 <div ng-show="showEmpty">
     <h3>No users was found</h3>
 </div>
-<nav>
+<nav class="text-center">
     <ul class="pagination">
-        <li  class="{{isPrevDisabled(currentPage)}}">
+        <li  class="{{currentPage==1 ? 'disabled' : ''}}">
             <a href="javascript:void(0)"
                ng-click="getUsers(currentPage-1)">
                 <span aria-hidden="true">&laquo;</span>

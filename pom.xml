@@ -20,6 +20,7 @@
         <jackson.version>2.7.3</jackson.version>
         <tiles.version>3.0.5</tiles.version>
         <slf4j.version>1.7.19</slf4j.version>
+        <logback.version>1.1.7</logback.version>
         <lombok.version>1.16.8</lombok.version>
         <apacheCommons.version>2.1.1</apacheCommons.version>
     </properties>
@@ -150,15 +151,9 @@
             <version>${slf4j.version}</version>
         </dependency>
         <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-log4j12</artifactId>
-            <version>${slf4j.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.logging.log4j</groupId>
-            <artifactId>log4j-core</artifactId>
-            <version>2.5</version>
-            <scope>runtime</scope>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>${logback.version}</version>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>

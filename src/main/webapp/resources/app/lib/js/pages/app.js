@@ -10,6 +10,7 @@ CargoSpring.service('PageService', function () {
     };
 
     this.isPrevDisabled = function (currentPage) {
+        console.log("current page: "+currentPage);
         return currentPage === 1 ? "disabled" : "";
     };
 

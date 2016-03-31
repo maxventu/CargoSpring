@@ -7,12 +7,17 @@
         admin: "ADMIN",
         driver: "DRIVER"
     };
+    CargoSpring.getValuesFromJSONToArray = function (json) {
+        return Object.keys(json).map(function(k) { return json[k] });
+    };
     CargoSpring.pages = [
-        {path:'index',name:'Home page', roles:CargoSpring.roles},
+        {path:'index',name:'Home page', roles:CargoSpring.getValuesFromJSONToArray(CargoSpring.roles)},
         {path:'users',name:'Users', roles:[CargoSpring.roles.sysadmin,CargoSpring.roles.admin]}
     ];
     CargoSpring.pagesDir = 'resources/app/pages';
     CargoSpring.path = window.location.pathname;
+
+   
 
 
     CargoSpring.config(function($routeProvider,$httpProvider){
@@ -49,8 +54,10 @@
 
     CargoSpring.run(
         function($rootScope,$location,authorisationService){
+            $rootScope.authenticated = false;
             $rootScope.usersCountOnPage = 10;
             $rootScope.appPages = CargoSpring.pages;
+            $rootScope.appPath = CargoSpring.path;
             $rootScope.getCurrentPage = function () {
                 var curPage = {path: '',name:''};
                 CargoSpring.pages.forEach(function(page, i, pages){
@@ -66,7 +73,15 @@
 
             $rootScope.hasAuthority = function (roles) {
                 if (authorisationService.permissionModel.isLoaded) {
-                    return (roles.indexOf(authorisationService.permissionModel.roles) > -1);
+                    var pageRoles = authorisationService.permissionModel.roles;
+                    var hasAuth = false;
+                    for(var i=0;i<roles.length;i++){
+                        
+                        for(var j=0;j< pageRoles.length;j++){
+                            if(roles[i] == pageRoles[j])hasAuth = true;
+                        }
+                    }
+                    return hasAuth;
                 } else {
                     return false;
                 }
@@ -83,7 +98,6 @@
             },
             permissionCheck: function (roleCollection) {
                 var deferred =  $q.defer();
-                console.log(deferred);
                 var parentPointer = this;
                 if (this.permissionModel.isLoaded) {
                     this.getPermission(this.permissionModel, roleCollection, deferred);
@@ -107,6 +121,7 @@
                         }
                     });
                     requestGetUserRole.error(function () {
+                        $location.path("/error");
                         deferred.reject();
                     })
                 }
@@ -126,11 +141,14 @@
                         });
                     }
                 }
-                console.log("auth is passed: "+isPassed);
                 if (!isPassed) {
-                    $location.path("/index");
+                    $rootScope.authenticated = false;
+                    console.log("authenticated: "+$rootScope.authenticated);
+                    $location.path("/");
                     deferred.reject();
                 } else {
+                    $rootScope.authenticated = true;
+                    console.log("authenticated: "+$rootScope.authenticated);
                     deferred.resolve();
                 }
             }
